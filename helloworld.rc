@@ -1,0 +1,17 @@
+// 资源文件注释格式为双斜杠
+// 包含资源头文件，以能使用头键字
+#include    <resource.h>
+
+// 指定对话框ID，asm文件中要定义同值变量才可引用
+#define    DLG_HELLOWORLD    1
+
+// 定义对话框结构
+DLG_HELLOWORLD    DIALOG 350,200,213,164
+STYLE                        DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION                    "Helloworld Program"
+FONT                        11,"宋体"
+{
+    CTEXT    "Win32 Assembly Helloworld Program",-1,50,54,170,21
+    CONTROL "",-1,"Static",SS_ETCHEDHORZ | WS_CHILD | WS_VISIBLE,6,79,203,1
+    DEFPUSHBUTTON "退出",IDOK,158,86,50,21
+}

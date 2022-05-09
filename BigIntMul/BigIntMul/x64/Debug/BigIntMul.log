@@ -1,0 +1,17 @@
+﻿  Assembling hello.asm...
+hello.asm(1): error A2008: syntax error : .
+hello.asm(2): error A2008: syntax error : .
+hello.asm(3): error A2008: syntax error : .
+C:\masm32\include\windows.inc(9750): error A2008: syntax errorC:\masm32\include\windows.inc(10183)d size
+C:\masm32\include\windows.inc(10183): error A2008: syntax erroC:\masm32\include\windows.inc(16333)d size
+C:\masm32\include\windows.inc(16333): error A2008: syntax erroC:\masm32\include\windows.inc(18862)d size
+C:\masm32\include\windows.inc(18862): error A2008: syntax erroC:\masm32\include\windows.inc(24749)d size
+C:\masm32\include\windows.inc(24749): error A2042: statement too cC:\masm32\include\winextra.inc(11052)ed size
+C:\masm32\include\winextra.inc(11052): error A2026: constant eC:\masm32\include\winextra.inc(11053)ed size
+C:\masm32\include\winextra.inc(11053): error A2026: constant ehello.asm(19) : error A2008:syntax error : ,
+hello.asm(23): error A2008: syntax error : MessageBoxA
+hello.asm(24): error A2008: syntax error : invoke
+hello.asm(28): error A2008: syntax error : mainT
+hello.asm(30): error A2044: invalid character in file
+hello.asm(30): error A2088: END directive required at end of file
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\BuildCustomizations\masm.targets(50,5): error MSB3721: 命令“ml64.exe /c /nologo /Zi /Fo"x64\Debug\hello.obj" /I "C:\masm32\include" /W3 /errorReport:prompt  /Tahello.asm”已退出，返回代码为 1。

@@ -1,0 +1,7 @@
+﻿  Assembling core.asm...
+core.asm(1): error A2008: syntax error : .
+core.asm(4): error A2008: syntax error : ,
+core.asm(12): error A2008: syntax error : printf
+core.asm(14): error A2008: syntax error : start
+core.asm(14): error A2088: END directive required at end of file
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\BuildCustomizations\masm.targets(50,5): error MSB3721: 命令“ml64.exe /c /nologo /Zi /Fo"x64\Debug\core.obj" /I "C:\masm32\include" /I "C:\masm32\include" /W3 /errorReport:prompt  /Tacore.asm”已退出，返回代码为 1。

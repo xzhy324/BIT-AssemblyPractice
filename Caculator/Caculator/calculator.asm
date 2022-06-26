@@ -58,13 +58,13 @@ idButtonSgn		 equ 20
 
 
 .data
-szBuffer		db		1024	 dup(?)		;ÊäÈëµÄ×Ö·û´®
+szBuffer		db		1024	 dup(?)		;è¾“å…¥çš„å­—ç¬¦ä¸²
 szFmt			db		'%f', 0
 
-nBuffer			dd		0					;ÊäÈë×Ö·û´®µÄµ±Ç°³¤¶È
+nBuffer			dd		0					;è¾“å…¥å­—ç¬¦ä¸²çš„å½“å‰é•¿åº¦
 number1			real8	0.0					
 number2			real8	0.0			
-op				db		0					;¼ÇÂ¼ÔËËã·û
+op				db		0					;è®°å½•è¿ç®—ç¬¦
 
 hInstance		HWND	?
 hWinMain		HWND	?
@@ -77,10 +77,10 @@ hEdit			HWND	?
 _ProcWinMain	proc	uses ebx edi esi,hWnd:HWND,uMsg:UINT,wParam:WPARAM,lParam:LPARAM
 
 
-				; ¸ù¾İÏûÏ¢µÄÀàĞÍ·Ö·¢µ½²»Í¬µÄ·ÖÖ§
+				; æ ¹æ®æ¶ˆæ¯çš„ç±»å‹åˆ†å‘åˆ°ä¸åŒçš„åˆ†æ”¯
 				mov		eax,uMsg
 				.if	uMsg == WM_CLOSE
-				;¹Ø±Õ´°¿Ú
+				;å…³é—­çª—å£
 					invoke DestroyWindow,hWinMain
 					invoke PostQuitMessage, NULL
 
@@ -156,7 +156,7 @@ _ProcWinMain	proc	uses ebx edi esi,hWnd:HWND,uMsg:UINT,wParam:WPARAM,lParam:LPAR
                       30, 255, 30, 30, hWnd, idButtonSgn, hInstance, NULL
                     
 				.elseif uMsg == WM_COMMAND
-				;¸÷ÖÖÊÂ¼şµÄ·Ö·¢º¯Êı
+				;å„ç§äº‹ä»¶çš„åˆ†å‘å‡½æ•°
 					mov eax,wParam
 					.if  eax >= 0 && eax <= 9 
 						mov edx,eax
@@ -165,7 +165,7 @@ _ProcWinMain	proc	uses ebx edi esi,hWnd:HWND,uMsg:UINT,wParam:WPARAM,lParam:LPAR
 						mov eax,nBuffer
 						mov szBuffer[eax],dl
 						inc nBuffer
-						mov eax,nBuffer			;ÔÚ½áÎ²ÌíÖĞÖ¹0
+						mov eax,nBuffer			;åœ¨ç»“å°¾æ·»ä¸­æ­¢0
 						mov szBuffer[eax],0
 						invoke	SetDlgItemText,hWnd,idEdit,offset szBuffer
 
@@ -187,7 +187,7 @@ _ProcWinMain	proc	uses ebx edi esi,hWnd:HWND,uMsg:UINT,wParam:WPARAM,lParam:LPAR
 						invoke	SetDlgItemText,hWnd,idEdit,offset szBuffer
 
 
-					.elseif eax == idButtonSin || eax == idButtonSqrt ;µ¥Ä¿Ëã·û
+					.elseif eax == idButtonSin || eax == idButtonSqrt ;å•ç›®ç®—ç¬¦
 						;num1 = atof(buf)
 						fclex			;clear exception
 						finit			
@@ -209,7 +209,7 @@ _ProcWinMain	proc	uses ebx edi esi,hWnd:HWND,uMsg:UINT,wParam:WPARAM,lParam:LPAR
 
 
 					.elseif wParam == idButtonAdd || wParam == idButtonSub \
-							|| wParam == idButtonMul || wParam == idButtonDiv;Ë«Ä¿Ëã·û
+							|| wParam == idButtonMul || wParam == idButtonDiv;åŒç›®ç®—ç¬¦
 						;num1 = atof(num1)
 						fclex			;clear exception
 						finit			
@@ -258,11 +258,11 @@ _ProcWinMain	proc	uses ebx edi esi,hWnd:HWND,uMsg:UINT,wParam:WPARAM,lParam:LPAR
 
 
 					.elseif eax == idButtonSgn
-						;ÅĞ¶ÏÊ××Ö·ûÊÇ·ñÊÇ¼õºÅ
+						;åˆ¤æ–­é¦–å­—ç¬¦æ˜¯å¦æ˜¯å‡å·
 						xor eax,eax
 						mov al,szBuffer[0]
 						.if eax == '-'
-							;¸ºÊı£¬½«Êı×ÖÎ»Ç°ÒÆÒ»¸ñ×ªÎªÕıÊı
+							;è´Ÿæ•°ï¼Œå°†æ•°å­—ä½å‰ç§»ä¸€æ ¼è½¬ä¸ºæ­£æ•°
 							mov eax,1
 							.while eax < nBuffer
 								mov dl,szBuffer[eax]
@@ -275,7 +275,7 @@ _ProcWinMain	proc	uses ebx edi esi,hWnd:HWND,uMsg:UINT,wParam:WPARAM,lParam:LPAR
 							mov nBuffer,eax
 							invoke	SetDlgItemText,hWnd,idEdit,offset szBuffer
 						.else
-							;ÕıÊı£¬½«Êı×ÖºóÒÆ,Ìí¼Ó¸ººÅ
+							;æ­£æ•°ï¼Œå°†æ•°å­—åç§»,æ·»åŠ è´Ÿå·
 							mov eax,nBuffer
 							.while eax > 0
 								mov dl,szBuffer[eax-1]
@@ -291,7 +291,7 @@ _ProcWinMain	proc	uses ebx edi esi,hWnd:HWND,uMsg:UINT,wParam:WPARAM,lParam:LPAR
 
 					.endif	
 				.else
-				;ÆäÓàÊÂ¼ş
+				;å…¶ä½™äº‹ä»¶
 					invoke DefWindowProc, hWnd,uMsg,wParam,lParam
 					ret
 				.endif
@@ -307,7 +307,7 @@ _WinMain		proc
 				mov		hInstance,eax
 				invoke	RtlZeroMemory,addr @stWndClass, sizeof @stWndClass
 
-				;×¢²á´°¿ÚÀà
+				;æ³¨å†Œçª—å£ç±»
 				invoke	LoadCursor,0,IDC_ARROW
 				mov		@stWndClass.hCursor,eax
 				push	hInstance
@@ -319,7 +319,7 @@ _WinMain		proc
 				mov		@stWndClass.lpszClassName,offset szClassName
 				invoke	RegisterClassEx, addr @stWndClass
 
-				;½¨Á¢²¢ÏÔÊ¾´°¿Ú
+				;å»ºç«‹å¹¶æ˜¾ç¤ºçª—å£
 				invoke	CreateWindowEx,WS_EX_CLIENTEDGE,\
 						offset szClassName, offset szCaptionMain,\
 						WS_OVERLAPPEDWINDOW,\
@@ -330,7 +330,7 @@ _WinMain		proc
 				invoke	ShowWindow,hWinMain,SW_SHOWNORMAL
 				invoke	UpdateWindow,hWinMain
 
-				;ÏûÏ¢Ñ­»·
+				;æ¶ˆæ¯å¾ªç¯
 				.while TRUE
 					invoke	GetMessage,addr @stMsg,NULL,0,0
 					.break	.if eax == 0
